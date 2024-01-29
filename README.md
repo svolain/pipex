@@ -1,22 +1,22 @@
 # Pipex
 
-This project will let us get familiar and find the details of UNIX pipe mechanism. The program is made with C language and the purpose is to simulate UNIX pipe according to below descriptions. 
+This project will let us get familiar with UNIX pipe mechanism and teach UNIX commands. The purpose of the program is to simulate UNIX pipe according to below steps. 
 
 ## Description of the Mandatory part
 
-The program replicates the behavior of the shell command: 
+Replicate the behavior of the shell command: 
 
 ```
 $> < file1 cmd1 | cmd2 > file2.
 ```
 
-By executing the program:
+By executing:
 
 ```
 $> ./pipex file1 cmd1 cmd2 file2
 ```
 
-The program also Handles errors, such as wrong commands, permission issues with files, and more.
+Error handling includes nonexistent commands, permission issues with files, and failures of used library functions.
 
 ## Description of the bonus part
 
@@ -26,13 +26,13 @@ The first bonus part expands the program to handle multiple commands:
 < file1 cmd1 | cmd2 | cmd3 ... | cmdn > file2
 ```
 
-By executing the program:
+By executing:
 
 ```
 $> ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2
 ```
 
-The second bonus part will let us use the UNIX operations « and »:
+The second bonus part will let us use the UNIX operations « and » with limiter:
 
 ```
 cmd << LIMITER | cmd1 >> file
