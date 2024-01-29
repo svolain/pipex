@@ -6,7 +6,7 @@
 /*   By: vsavolai <vsavolai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 16:18:41 by vsavolai          #+#    #+#             */
-/*   Updated: 2024/01/04 12:56:47 by vsavolai         ###   ########.fr       */
+/*   Updated: 2024/01/26 10:46:58 by vsavolai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
+
+# ifndef GNL_BUFFER_SIZE
+#  define GNL_BUFFER_SIZE 1000
+# endif
 
 typedef struct s_list
 {
@@ -71,5 +75,15 @@ int		ft_print_char(int c);
 int		ft_print_str(char *str);
 int		ft_print_digit(long n, int base, char specifier);
 int		ft_print_pointer(unsigned long n);
+char	*ft_gnl_strchr(char *s, int c);
+char	*ft_gnl_strjoin(char *s1, char *s2);
+size_t	ft_gnl_strlen(const char *s);
+char	*ft_gnl_strcpy(char *s1, const char *s2);
+char	*ft_gnl_substr(char *s, unsigned int start, size_t len);
+char	*ft_read_from_fd(int fd, char *remain);
+char	*ft_extract_line(char *remain);
+char	*ft_extract_remain(char *remain);
+char	*ft_get_next_line(int fd);
+int		ft_strcmp(char *s1, char *s2);
 
 #endif

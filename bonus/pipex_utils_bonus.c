@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_utils.c                                      :+:      :+:    :+:   */
+/*   pipex_utils_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsavolai <vsavolai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 07:00:21 by vsavolai          #+#    #+#             */
-/*   Updated: 2024/01/23 19:09:28 by vsavolai         ###   ########.fr       */
+/*   Created: 2024/01/23 12:36:02 by vsavolai          #+#    #+#             */
+/*   Updated: 2024/01/26 10:38:38 by vsavolai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "pipex_bonus.h"
 
 char	*parse_envp(char **envp)
 {
@@ -99,4 +99,33 @@ void	error_handling(int error_nbr, char *error_str)
 		ft_putendl_fd(error_str, 2);
 	}
 	exit (EXIT_FAILURE);
+}
+
+int	check_open_fd(char *file, int fd_nbr)
+{
+	int	fd;
+
+	fd = 0;
+	if (fd_nbr == 1)
+	{
+		if (access(file, R_OK) != 0)
+			error_handling(6, file);
+		fd = open(file, O_RDONLY, 0777);
+		if (fd == -1)
+			error_handling(4, file);
+	}
+	else if (fd_nbr == 2)
+	{
+		if (access(file, F_OK) == 0)
+			if (access(file, R_OK) != 0)
+				error_handling(6, file);
+		fd = open(file, O_CREAT | O_RDWR | O_TRUNC, 0777);
+		if (fd == -1)
+			error_handling(4, file);
+	}
+	else if (fd_nbr == 3)
+	{
+		fd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0777);
+	}
+	return (fd);
 }
